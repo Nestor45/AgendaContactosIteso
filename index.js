@@ -16,7 +16,6 @@ app.get('', (req, res) => {
     res.send("api works")
 })
 
-//const uri= "mongodb+srv://userIteso:5noMhDffnrRGO5hf@cluster0.xpfbs4j.mongodb.net/Iteso-list?retryWrites=true&w=majority" //5noMhDffnrRGO5hf
 const uri = process.env.MONGODB
 
 mongoose.connect(uri, (err) => {

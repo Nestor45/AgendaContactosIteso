@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const user = require("../../models/user")
+const user = require("./../../models/user")
 
 module.exports = {
     login: (req, res) => {
@@ -16,5 +16,15 @@ module.exports = {
             }).catch(err => {
                 res.sendStatus(400)
             })
+    },
+    register: (req, res) => {
+        const data = req.body
+        user.create(data)
+            .then(response => {
+                res.send(response)
+            })
+            .catch(err => {
+                res.sendStatus(400)
+            }) 
     }
 }
