@@ -1,10 +1,12 @@
+const jwt = require("jsonwebtoken")
 const contact = require('./../../models/contact')
 
 module.exports = {
     getAll: (req, res) => {
         const token = req.headers.authorization
-        console.log('Token', token)
-        contact.find({status:1})
+        const { _id:userId, name } = jwt.verify(token, process.env.JWT_SECRET)
+        console.log("payload: ", userId, name)
+        contact.find({status:1, userId})
             .then(data => {
                 res.send(data)
             })
@@ -47,12 +49,15 @@ module.exports = {
             })
     },
     create: (req, res) => {
+        const token = req.headers.authorization
+        const { _id:userId } = jwt.verify(token, process.env.JWT_SECRET)
         const data = req.body
+        data.userId = userId
         contact.create(data).then(response => {
             res.send(response)
         })
         .catch(err => {
-            res.status(400).send('algo salio mal al crear :(')
+            res.status(400).send('algo salio mal al crear contacto:(')
         })
     },
     updateContact: (req, res) => {

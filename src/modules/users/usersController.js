@@ -8,9 +8,8 @@ module.exports = {
         user.findOne(credentials)
             .then(response => {
                 if (response) {
-                    console.log("ok", response)
                     const { _id, name } = response
-                    const token = jwt.sign({ _id, name}, 'holamundo')
+                    const token = jwt.sign({ _id, name}, process.env.JWT_SECRET)
                     res.send(token)
                 } else {
                     res.sendStatus(401)
