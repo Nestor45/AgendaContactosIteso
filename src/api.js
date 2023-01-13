@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const contactRouter = require("./modules/contacts/contactRouter")
+const contactRouter = require("./modules/contacts/contactsRouter")
 const userRouter = require("./modules/users/usersRouter")
 
 
