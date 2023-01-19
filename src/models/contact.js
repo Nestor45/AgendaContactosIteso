@@ -5,7 +5,8 @@ const contactsSchema = new Schema({
     email: { type:String, required:true},
     phone: { type:String },
     status: { type:Number, default:1 },
-    userId: { type: String }
+    userId: { type: String },
+    photoUrl: {type: String}
 })
 
 module.exports = model('contacts',contactsSchema)

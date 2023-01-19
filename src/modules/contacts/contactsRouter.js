@@ -10,11 +10,21 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, callback) => {
         const extension = file.originalname.split('.').pop()
-        let name = new Date().getTime() + extension
+        let name = new Date().getTime() +"."+ extension
         callback(null, name)
     }
 })
-const upload = multer({ storage: storage });
+
+/* function filtrar (req, file, callback) {
+    callback(null, false)
+} */
+
+const filter = (req, file, callback) => {
+    const isValid = file.mimetype === 'image'
+    callback(null, isValid)
+}
+
+const upload = multer({ storage: storage, fileFilter: filter });
 
 const contactsController = require('./contactsController')
 router.use('/api',authMiddleware)

@@ -12,8 +12,11 @@ const port = process.env.PORT || 3000
 
 app.use(apiRoutes)
 
+app.use('/fotos', express.static(__dirname + '/uploads/images'))
+
 app.get('', (req, res) => {
-    res.send("api works")
+    /* res.send("api works") */
+    res.sendFile(__dirname + '/src/view/index.html')
 })
 
 const uri = process.env.MONGODB
