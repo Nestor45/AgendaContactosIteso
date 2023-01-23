@@ -16,7 +16,11 @@ app.use('/fotos', express.static(__dirname + '/uploads/images'))
 
 app.get('', (req, res) => {
     /* res.send("api works") */
-    res.sendFile(__dirname + '/src/view/index.html')
+    //res.sendFile(__dirname + '/src/view/index.html')
+    res.json({
+        state: 'true',
+        message: 'Todo cool'
+    })
 })
 
 const uri = process.env.MONGODB
